@@ -25,5 +25,5 @@ if __name__ == "__main__":
         logger.info(f">>>>>>>> stage {STAGE_NAME} completed <<<<<<")
     except Exception as e:
         logger.exception(e)
-        raise EOFError
+        raise e
         #logger.error(f">>>>>>>> stage {STAGE_NAME} failed with error: {e} <<<<<<")
