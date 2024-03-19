@@ -31,7 +31,7 @@ class Training:
         )
 
 
-        self.train_valid_generator = valid_datagenerator.flow_form_directory(
+        self.train_valid_generator = valid_datagenerator.flow_from_directory(
             directory = self.config.training_data,
             subset = "validation",
             shuffle = False,
