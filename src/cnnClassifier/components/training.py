@@ -47,7 +47,7 @@ class Training:
                 height_shift_range=0.2,
                 shear_range=0.2,
                 zoom_range=0.2,
-                **datagenerator_kwargs
+                **datagenerateor_kwargs
             )
         else:
             train_datagenerator = valid_datagenerator
