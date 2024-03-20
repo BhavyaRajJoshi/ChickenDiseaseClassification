@@ -14,28 +14,27 @@ class Training:
         )
 
     def train_valid_generator(self):
-
-        datagenerateor_kwargs = dict(
-            rescale = 1./255,
-            validation_split = 0.20
-        )
-
+        datagenerator_kwargs = dict(
+            rescale=1./255,
+            validation_split=0.20
+)
+        
         dataflow_kwargs = dict(
-            target_size = self.config.params_image_size[:-1],
-            batch_size = self.config.params_batch_size,
-            interpolation = "bilenear"
+            target_size=self.config.params_image_size[:-1],
+            batch_size=self.config.params_batch_size,
+            interpolation="bilinear"
         )
 
         valid_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
-            **datagenerateor_kwargs
+            **datagenerator_kwargs
         )
 
 
-        self.train_valid_generator = valid_datagenerator.flow_from_directory(
+        self.valid_generator = valid_datagenerator.flow_from_directory(
             directory = self.config.training_data,
             subset = "validation",
             shuffle = False,
-            **datagenerateor_kwargs
+            **dataflow_kwargs
         )
 
 
@@ -47,7 +46,7 @@ class Training:
                 height_shift_range=0.2,
                 shear_range=0.2,
                 zoom_range=0.2,
-                **datagenerateor_kwargs
+                **datagenerator_kwargs
             )
         else:
             train_datagenerator = valid_datagenerator
@@ -69,8 +68,8 @@ class Training:
     
 
     def train(self, callback_list: list):
-        self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
-        self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
+        self.steps_per_epoch = self.train_datagenerator.samples // self.train_datagenerator.batch_size
+        self.validation_steps = self.valid_datagenerator.samples // self.valid_datagenerator.batch_size
 
         self.model.fit(
             self.train_generator,
