@@ -69,7 +69,7 @@ class Training:
 
     def train(self, callback_list: list):
         self.steps_per_epoch = self.train_datagenerator.samples // self.train_datagenerator.batch_size
-        self.validation_steps = self.valid_datagenerator.samples // self.valid_datagenerator.batch_size
+        self.validation_steps = self.train_valid_generator.samples // self.train_valid_generator.batch_size
 
         self.model.fit(
             self.train_generator,
