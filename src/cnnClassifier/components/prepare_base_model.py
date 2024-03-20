@@ -3,6 +3,7 @@ import urllib.request as request
 from zipfile import ZipFile
 import tensorflow as tf
 import keras
+from keras.optimizers.legacy import SGD
 from pathlib import Path
 from cnnClassifier.entity.config_entity import PrepareBaseModelConfig
 import ssl

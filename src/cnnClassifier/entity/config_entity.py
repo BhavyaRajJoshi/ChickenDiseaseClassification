@@ -27,6 +27,7 @@ class PrepareCallbacksConfig:
     tensorboard_root_log_dir: Path
     checkpoint_model_filepath: Path
     
+    
 
 @dataclass(frozen=True)
 class TrainingConfig:
