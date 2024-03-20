@@ -20,13 +20,12 @@ class Training:
 )
         
         dataflow_kwargs = dict(
-            target_size=self.config.params_image_size[:-1],
-            batch_size=self.config.params_batch_size,
+            
             interpolation="bilinear"
         )
 
         valid_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
-            **datagenerator_kwargs
+            **dataflow_kwargs
         )
 
 
@@ -34,6 +33,8 @@ class Training:
             directory = self.config.training_data,
             subset = "validation",
             shuffle = False,
+            target_size=self.config.params_image_size[:-1],
+            batch_size=self.config.params_batch_size,
             **dataflow_kwargs
         )
 
@@ -52,10 +53,11 @@ class Training:
             train_datagenerator = valid_datagenerator
 
         
-        self.train_datagenerator = train_datagenerator.flow_from_directory(
+        self.train_generator = train_datagenerator.flow_from_directory(
             directory = self.config.training_data,
             subset = "training",
             shuffle = True,
+            target_size=self.config.params_image_size[:-1],
             **dataflow_kwargs
 
         )
@@ -68,8 +70,8 @@ class Training:
     
 
     def train(self, callback_list: list):
-        self.steps_per_epoch = self.train_datagenerator.samples // self.train_datagenerator.batch_size
-        self.validation_steps = self.train_valid_generator.samples // self.train_valid_generator.batch_size
+        self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
+        self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
 
         self.model.fit(
             self.train_generator,
