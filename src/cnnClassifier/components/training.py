@@ -17,15 +17,16 @@ class Training:
         datagenerator_kwargs = dict(
             rescale=1./255,
             validation_split=0.20
-)
+            )
         
         dataflow_kwargs = dict(
-            
+            target_size=self.config.params_image_size[:-1],
+            batch_size=self.config.params_batch_size,
             interpolation="bilinear"
         )
 
         valid_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
-            **dataflow_kwargs
+            **datagenerator_kwargs
         )
 
 
@@ -35,7 +36,7 @@ class Training:
             shuffle = False,
             target_size=self.config.params_image_size[:-1],
             batch_size=self.config.params_batch_size,
-            **dataflow_kwargs
+            interpolation="bilinear"
         )
 
 
@@ -58,8 +59,8 @@ class Training:
             subset = "training",
             shuffle = True,
             target_size=self.config.params_image_size[:-1],
-            **dataflow_kwargs
-
+            batch_size=self.config.params_batch_size,
+            interpolation="bilinear"
         )
 
     
