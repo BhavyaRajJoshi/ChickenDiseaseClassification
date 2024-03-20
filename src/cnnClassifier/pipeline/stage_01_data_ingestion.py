@@ -1,6 +1,9 @@
 from cnnClassifier.config.configuration import ConfigurationManager
 from cnnClassifier.components.data_ingestion import DataIngestion
 from cnnClassifier import logger
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+
 
 
 STAGE_NAME = "Data Ingestion Stage"
