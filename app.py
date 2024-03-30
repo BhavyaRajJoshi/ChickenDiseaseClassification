@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import os
 from flask_cors import CORS, cross_origin
 from cnnClassifier.utils.common import decode_image
-from cnnClassifier.pipeline.predict import PredictionPipeline
+from cnnClassifier.pipeline.stage_05_predict import PredictionPipeline
 
 
 os.putenv('LANG', 'en_US.UTF-8')
@@ -27,7 +27,7 @@ def home():
 @app.route("/train", methods=['GET','POST'])
 @cross_origin()
 def trainRoute():
-    os.system("python main.py")
+    os.system("python3 main.py")
     return "Training done successfully!"
 
 
@@ -36,11 +36,11 @@ def trainRoute():
 @cross_origin()
 def predictRoute():
     image = request.json['image']
-    decodeImage(image, clApp.filename)
+    decode_image(image, clApp.filename)
     result = clApp.classifier.predict()
     return jsonify(result)
 
 
 if __name__ == "__main__":
     clApp = ClientApp()
-    # app.run(host='0.0.0.0', port=8080) #local host
+    app.run(host='0.0.0.0', port=8080) #local host
