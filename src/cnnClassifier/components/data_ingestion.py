@@ -6,9 +6,9 @@ from cnnClassifier.utils.common import get_size
 from cnnClassifier.entity.config_entity import DataIngestionConfig
 from pathlib import Path
 
+
 class DataIngestion:
-    def __init__(
-        self, config : DataIngestionConfig):
+    def __init__(self, config : DataIngestionConfig):
         self.config = config
 
     def download_file(self):

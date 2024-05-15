@@ -5,7 +5,7 @@ import tensorflow as tf
 import keras
 from keras.optimizers.legacy import SGD
 from pathlib import Path
-from cnnClassifier.entity.config_entity import PrepareBaseModelConfig
+from src.cnnClassifier.entity.config_entity import PrepareBaseModelConfig
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
