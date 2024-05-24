@@ -1,11 +1,19 @@
+import sys
 import os
+
+# Get the path of the parent directory
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# Add the parent directory to sys.path
+sys.path.append('/Users/richcriticism/Documents/Documents/Bhavya_code/machine learning/ChickenDiseaseClassification/src')
+
 import urllib.request as request
 from zipfile import ZipFile
 import tensorflow as tf
 import keras
 from keras.optimizers.legacy import SGD
 from pathlib import Path
-from src.cnnClassifier.entity.config_entity import PrepareBaseModelConfig
+from cnnClassifier.entity.config_entity import PrepareBaseModelConfig
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -53,7 +61,6 @@ class PrepareBaseModel:
             metrics = ['accuracy']
         )
 
-
         full_model.summary()
         return full_model
     
@@ -71,6 +78,6 @@ class PrepareBaseModel:
 
     
     @staticmethod
-    def save_model(path, model: tf.keras.Model):
+    def save_model(path: Path, model: tf.keras.Model):
         model.save(path)
 

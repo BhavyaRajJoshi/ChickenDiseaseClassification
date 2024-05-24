@@ -1,3 +1,14 @@
+import sys
+import os
+
+# Get the path of the parent directory
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# Add the parent directory to sys.path
+sys.path.append('/Users/richcriticism/Documents/Documents/Bhavya_code/machine learning/ChickenDiseaseClassification/src')
+
+
+
 from cnnClassifier.config.configuration import ConfigurationManager
 from cnnClassifier.components.prepare_callbacks import PrepareCallback
 from cnnClassifier.components.training import Training

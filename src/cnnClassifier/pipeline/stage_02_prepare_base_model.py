@@ -1,8 +1,15 @@
+import sys
+import os
+
+# Get the path of the parent directory
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# Add the parent directory to sys.path
+sys.path.append('/Users/richcriticism/Documents/Documents/Bhavya_code/machine learning/ChickenDiseaseClassification/src')
+
 from cnnClassifier.config.configuration import ConfigurationManager
 from cnnClassifier.components.prepare_base_model import PrepareBaseModel
 from cnnClassifier import logger
-
-# Your code goes here
 
 STAGE_NAME = "Prepare Base Model"
 
@@ -17,6 +24,7 @@ class PrepareBaseModelTrainingPipeline:
         prepare_base_model = PrepareBaseModel(config = prepare_base_model_config)
         prepare_base_model.get_base_model()
         prepare_base_model.update_base_model()
+        
 
 
 if __name__ == "__main__":
@@ -28,3 +36,4 @@ if __name__ == "__main__":
     except Exception as e:
         logger.exception(e)
         raise e
+    
