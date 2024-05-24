@@ -1,7 +1,7 @@
 import sys
 sys.path.append("src")
 from cnnClassifier.config.configuration import ConfigurationManager
-from src.cnnClassifier.components.data_ingestion import DataIngestion
+from cnnClassifier.components.data_ingestion import DataIngestion
 from cnnClassifier import logger
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context

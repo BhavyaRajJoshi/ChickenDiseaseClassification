@@ -1,5 +1,5 @@
 from cnnClassifier.config.configuration import ConfigurationManager
-from src.cnnClassifier.components.evaluation import Evaluation
+from cnnClassifier.components.evaluation import Evaluation
 from cnnClassifier import logger
 
 

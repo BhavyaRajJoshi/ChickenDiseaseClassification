@@ -5,7 +5,7 @@ from pathlib import Path
 @dataclass(frozen = True)
 class DataIngestionConfig:
     root_dir : Path
-    source_URL: str
+    source_url: str
     local_data_file : Path
     unzip_dir : Path
 
@@ -26,8 +26,6 @@ class PrepareCallbacksConfig:
     root_dir: Path
     tensorboard_root_log_dir: Path
     checkpoint_model_filepath: Path
-    
-    
 
 @dataclass(frozen=True)
 class TrainingConfig:

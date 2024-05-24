@@ -5,7 +5,8 @@ from cnnClassifier.entity.config_entity import DataIngestionConfig
 from cnnClassifier.entity.config_entity import PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig, EvaluationConfig
 
 class ConfigurationManager:
-    def __init__( self, config_filepath = CONFIG_FILE_PATH, params_filepath = PARAMS_FILE_PATH ):
+
+    def __init__(self, config_filepath = CONFIG_FILE_PATH, params_filepath = PARAMS_FILE_PATH):
 
         self.config = read_yaml(config_filepath)
         self.params = read_yaml(params_filepath)
@@ -20,7 +21,7 @@ class ConfigurationManager:
 
         data_ingestion_config = DataIngestionConfig(
             root_dir=config.root_dir,
-            source_URL=config.source_URL,  # Corrected attribute name
+            source_url=config.source_url,  # Corrected attribute name
             local_data_file=config.local_data_file,
             unzip_dir=config.unzip_dir,
         )
@@ -33,6 +34,7 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         prepare_base_model_config = PrepareBaseModelConfig(
+            
             root_dir = Path(config.root_dir),
             base_model_path = Path(config.base_model_path),
             updated_base_model_path = Path(config.updated_base_model_path),
