@@ -1,6 +1,12 @@
-from flask import Flask, request, jsonify, render_template
+import sys
 import os
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS, cross_origin
+# Get the path of the parent directory
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# Add the parent directory to sys.path
+sys.path.append('/Users/richcriticism/Documents/Documents/Bhavya_code/machine learning/ChickenDiseaseClassification/src')
+
 from cnnClassifier.utils.common import decode_image
 from cnnClassifier.pipeline.stage_05_predict import PredictionPipeline
 

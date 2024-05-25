@@ -57,6 +57,7 @@ class ConfigurationManager:
             Path(config.tensorboard_root_log_dir)
         ])
 
+
         prepare_callback_config = PrepareCallbacksConfig(
             root_dir = Path(config.root_dir),
             tensorboard_root_log_dir = Path(config.tensorboard_root_log_dir),

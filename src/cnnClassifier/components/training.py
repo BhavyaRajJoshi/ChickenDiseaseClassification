@@ -33,12 +33,10 @@ class Training:
 
 
         self.valid_generator = valid_datagenerator.flow_from_directory(
-            directory = self.config.training_data,
-            subset = "validation",
-            shuffle = False,
-            target_size=self.config.params_image_size[:-1],
-            batch_size=self.config.params_batch_size,
-            interpolation="bilinear"
+            directory=self.config.training_data,
+            subset="validation",
+            shuffle=False,
+            **dataflow_kwargs
         )
 
 
@@ -76,14 +74,14 @@ class Training:
         self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
         self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
 
+        print(f" model summary is ///// //////////////{self.model.summary()} ///////////////////////////////")
 
-        optimizer = tf.keras.optimizers.SGD(learning_rate=0.01)
-
+            
         self.model.compile(
-            optimizer = tf.keras.optimizers.SGD(learning_rate = .01),
+            optimizer = tf.keras.optimizers.SGD(learning_rate = .03),
             loss = tf.keras.losses.CategoricalCrossentropy(),
-            metrics = ['accuracy'])
-        
+            metrics = ['accuracy']
+        )
 
         self.model.fit(
             self.train_generator,
